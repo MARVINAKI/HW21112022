@@ -1,5 +1,7 @@
 import Animals.Animals;
 import Animals.Bird;
+import Animals.Mammalia;
+import Animals.Amphibia;
 import Transport.Bus;
 import Transport.Car;
 import Transport.Train;
@@ -57,5 +59,35 @@ public class Main {
         peacock.hunt();
         seagull.hunt();
         albatross.hunt();
+
+
+        Mammalia.TypeOfEat herbivore = new Mammalia.TypeOfEat("Травоядное");
+        Mammalia.TypeOfEat predator = new Mammalia.TypeOfEat("Хищник");
+
+        Mammalia gazzelle = new Mammalia("Газа", 5, "полупустнные места", 50);
+        gazzelle.setTypeOfEat(herbivore);
+        Mammalia giraffe = new Mammalia("Жора", 10, "Африка", 60);
+        giraffe.setTypeOfEat(herbivore);
+        Mammalia horse = new Mammalia("Плотва", 4, "широкий спектр", 58);
+        horse.setTypeOfEat(herbivore);
+        Mammalia hyena = new Mammalia("Асантэ", 5, "Африка", 68);
+        hyena.setTypeOfEat(predator);
+        Mammalia tiger = new Mammalia("Шер-Хан", 10, "широкий спектр", 64);
+        tiger.setTypeOfEat(predator);
+        Mammalia bear = new Mammalia("Винни", 12, "широкий спектр", 60);
+        bear.setTypeOfEat(predator);
+        gazzelle.hunt();
+        gazzelle.move();
+        gazzelle.sleep();
+        tiger.move();
+        tiger.hunt();
+        tiger.sleep();
+
+        Amphibia frog = new Amphibia("Квака",1,"широкий спектр");
+        Amphibia snake = new Amphibia("Каа",20,"широкий спектр");
+        snake.sleep();
+        frog.sleep();
+
+        System.out.println(snake);
     }
 }
