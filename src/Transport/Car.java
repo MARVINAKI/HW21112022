@@ -1,5 +1,7 @@
 package Transport;
 
+import java.util.Objects;
+
 public class Car extends Transport {
     private double engineVolume;
     private String transmission;
@@ -47,6 +49,28 @@ public class Car extends Transport {
             this.number = number == null || number.trim().isEmpty() || number.length() != 9 ? "Номер страховки некорректный!" : number.trim();
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Insurance insurance = (Insurance) o;
+            return price == insurance.price && validity.equals(insurance.validity) && number.equals(insurance.number);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(validity, number, price);
+        }
+
+        @Override
+        public String toString() {
+            return "Insurance{" +
+                    "validity='" + validity + '\'' +
+                    ", number='" + number + '\'' +
+                    ", price=" + price +
+                    '}';
+        }
+
         private void setPrice(int price) {
             this.price = Math.abs(price);
         }
@@ -75,6 +99,27 @@ public class Car extends Transport {
 
         public void setKeyless(String keyless) {
             this.keyless = keyless == null || keyless.trim().isEmpty() ? "default" : keyless.trim();
+        }
+
+        @Override
+        public String toString() {
+            return "Key{" +
+                    "remoteEngine='" + remoteEngine + '\'' +
+                    ", keyless='" + keyless + '\'' +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Key key = (Key) o;
+            return remoteEngine.equals(key.remoteEngine) && keyless.equals(key.keyless);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(remoteEngine, keyless);
         }
     }
 
@@ -188,5 +233,32 @@ public class Car extends Transport {
 
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats <= 0 || numberOfSeats > 10 ? 2 : numberOfSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Double.compare(car.engineVolume, engineVolume) == 0 && numberOfSeats == car.numberOfSeats && transmission.equals(car.transmission) && bodyType.equals(car.bodyType) && numberOfRegistration.equals(car.numberOfRegistration) && rubber.equals(car.rubber) && insurance.equals(car.insurance) && key.equals(car.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(engineVolume, transmission, bodyType, numberOfRegistration, rubber, numberOfSeats, insurance, key);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "engineVolume=" + engineVolume +
+                ", transmission='" + transmission + '\'' +
+                ", bodyType='" + bodyType + '\'' +
+                ", numberOfRegistration='" + numberOfRegistration + '\'' +
+                ", rubber='" + rubber + '\'' +
+                ", numberOfSeats=" + numberOfSeats +
+                ", insurance=" + insurance +
+                ", key=" + key +
+                '}';
     }
 }

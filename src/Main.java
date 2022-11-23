@@ -1,12 +1,12 @@
-package Forge;
-
+import Animals.Animals;
+import Animals.Bird;
 import Transport.Bus;
 import Transport.Car;
 import Transport.Train;
 
 public class Main {
     public static void main(String[] args) {
-        Car.Key keyType1 = new Car.Key("YES", "YES");
+        /*Car.Key keyType1 = new Car.Key("YES", "YES");
         Car.Key keyType2 = new Car.Key("YES", "NO");
         Car.Key keyType3 = new Car.Key("NO", "YES");
         Car.Key keyType4 = new Car.Key("NO", "NO");
@@ -33,8 +33,29 @@ public class Main {
         Bus bus2 = new Bus("VolgaBus", "СитиРитм-10", "РФ", "желтый",
                 2017, 120);
         Bus bus3 = new Bus("Volvo", "7900", "Belgium", "зеленый",
-                2011, 120);
+                2011, 120);*/
 
-        bus2.refill();
+
+        Bird.FlyType flying = new Bird.FlyType("Летающие");
+        Bird.FlyType notFlying = new Bird.FlyType("Нелетающие");
+
+        Bird peacock = new Bird("Павлик", 31, "Индостан, остров Цейлон");
+        peacock.setFlyType(notFlying);
+        Bird penguin = new Bird(null, 5, "Южное полушарие");
+        penguin.setFlyType(notFlying);
+        Bird dodo = new Bird("Мавр", 3, "остров Маврикий");
+        dodo.setFlyType(notFlying);
+        Bird seagull = new Bird("Кричуха", 2, "");
+        seagull.setFlyType(flying);
+        Bird albatross = new Bird("Джессика", 4, "Южные тропики и Антарктида");
+        albatross.setFlyType(flying);
+        Bird falcon = new Bird("Фил", 3, null);
+        falcon.setFlyType(flying);
+        dodo.move();
+        falcon.move();
+        penguin.move();
+        peacock.hunt();
+        seagull.hunt();
+        albatross.hunt();
     }
 }
