@@ -1,5 +1,6 @@
 package Transport;
 
+import java.util.Objects;
 import java.util.SortedMap;
 
 public class Train extends Transport {
@@ -65,6 +66,28 @@ public class Train extends Transport {
         this.amountOfWagons = Math.abs(amountOfWagons);
     }
 
+    @Override
+    public String toString() {
+        return "Train{" +
+                "tripPrice=" + tripPrice +
+                ", tripTime=" + tripTime +
+                ", nameOfStationA='" + nameOfStationA + '\'' +
+                ", nameOfStationB='" + nameOfStationB + '\'' +
+                ", amountOfWagons=" + amountOfWagons +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Train train = (Train) o;
+        return Double.compare(train.tripPrice, tripPrice) == 0 && Double.compare(train.tripTime, tripTime) == 0 && amountOfWagons == train.amountOfWagons && nameOfStationA.equals(train.nameOfStationA) && nameOfStationB.equals(train.nameOfStationB);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tripPrice, tripTime, nameOfStationA, nameOfStationB, amountOfWagons);
+    }
 }
 
