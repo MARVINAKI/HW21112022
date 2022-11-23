@@ -1,5 +1,7 @@
 package Animals;
 
+import java.util.Objects;
+
 public abstract class Animals {
     private String nickname;
     private int age;
@@ -13,7 +15,15 @@ public abstract class Animals {
 
     public abstract void move();
 
-    public String getNickname() {
+    public void sleep() {
+        if (getNickname() == null) {
+            System.out.println("Животное спит");
+        } else {
+            System.out.println(getNickname() + " спит");
+        }
+    }
+
+    public final String getNickname() {
         return nickname;
     }
 
@@ -23,7 +33,7 @@ public abstract class Animals {
         }
     }
 
-    public int getAge() {
+    public final int getAge() {
         return age;
     }
 
@@ -31,5 +41,26 @@ public abstract class Animals {
         if (getAge() == 0) {
             this.age = Math.abs(age);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animals animals = (Animals) o;
+        return age == animals.age && nickname.equals(animals.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nickname, age);
+    }
+
+    @Override
+    public String toString() {
+        return "Animals{" +
+                "nickname='" + nickname + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

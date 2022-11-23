@@ -15,8 +15,12 @@ public class Bird extends Animals {
             setFlyType(flyType);
         }
 
-        private boolean flyOrNot() {
-            return getFlyType().equals("Летающие");
+        private boolean flying() {
+            return getFlyType().equalsIgnoreCase("Летающие");
+        }
+
+        private boolean notFlying() {
+            return getFlyType().equalsIgnoreCase("Нелетающие");
         }
 
         public String getFlyType() {
@@ -25,6 +29,19 @@ public class Bird extends Animals {
 
         public final void setFlyType(String flyType) {
             this.flyType = flyType == null || flyType.trim().isEmpty() ? null : flyType.trim();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FlyType flyType1 = (FlyType) o;
+            return flyType.equals(flyType1.flyType);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(flyType);
         }
 
         @Override
@@ -52,25 +69,23 @@ public class Bird extends Animals {
         if (this.flyType == null) {
             System.out.println("Не определено");
         } else if (this.getNickname() == null) {
-            System.out.println(this.getFlyType().flyOrNot() ?
+            System.out.println(this.getFlyType().flying() ?
                     "Птица летает" : "Птица гуляет");
         } else {
-            System.out.println(this.getFlyType().flyOrNot() ?
+            System.out.println(this.getFlyType().flying() ?
                     this.getNickname() + " летает" : this.getNickname() + " гуляет");
         }
     }
 
-    public String getHabitat() {
+    public final String getHabitat() {
         return habitat;
     }
 
     public final void setHabitat(String habitat) {
-        if (this.getHabitat() == null) {
-            this.habitat = habitat == null || habitat.trim().isEmpty() ? null : habitat.trim();
-        }
+        this.habitat = habitat == null || habitat.trim().isEmpty() ? null : habitat.trim();
     }
 
-    public FlyType getFlyType() {
+    public final FlyType getFlyType() {
         return flyType;
     }
 
